@@ -1,0 +1,448 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>语义化提交 · Git学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="semver.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    分支
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    标签
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    submodule
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    subtree
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    Hook
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    附件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <span>
+            
+                    
+                    GitHub
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" >
+            
+                <span>
+            
+                    
+                    GitLab
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" >
+            
+                <span>
+            
+                    
+                    Git Flow
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="semver.html">
+            
+                <a href="semver.html">
+            
+                    
+                    语义化版本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7.5" data-path="semantic_commit.html">
+            
+                <a href="semantic_commit.html">
+            
+                    
+                    语义化提交
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >语义化提交</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x4E3B;&#x4E49;&#x5316;&#x63D0;&#x4EA4;semantic-commit-messages">&#x4E3B;&#x4E49;&#x5316;&#x63D0;&#x4EA4;(Semantic Commit Messages)</h1>
+<h2 id="&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x7EA6;&#x5B9A;&#x7684;&#x539F;&#x56E0;">&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x7EA6;&#x5B9A;&#x7684;&#x539F;&#x56E0;:</h2>
+<ul>
+<li>&#x81EA;&#x52A8;&#x751F;&#x6210;&#x4FEE;&#x6539;&#x65E5;&#x5FD7;</li>
+<li>&#x66F4;&#x6E05;&#x6670;&#x4E14;&#x6709;&#x610F;&#x4E49;&#x7684;Git&#x5386;&#x53F2;&#x8BB0;&#x5F55; (&#x4F8B;&#x5982;. &#x5FFD;&#x7565;&#x6837;&#x5F0F;&#x66F4;&#x6539;)</li>
+</ul>
+<h2 id="&#x63D0;&#x4EA4;&#x6D88;&#x606F;&#x7ED3;&#x6784;">&#x63D0;&#x4EA4;&#x6D88;&#x606F;&#x7ED3;&#x6784;:</h2>
+<pre><code class="lang-bash">&lt;<span class="hljs-built_in">type</span>&gt;(&lt;scope&gt;): &lt;subject&gt;
+
+&lt;body&gt;
+
+&lt;footer&gt;
+</code></pre>
+<h2 id="&#x793A;&#x4F8B;">&#x793A;&#x4F8B;:</h2>
+<pre><code class="lang-bash">fix(middleware): ensure Range headers adhere more closely to RFC 2616
+
+Add one new dependency, use `range-parser` (Express dependency) to compute
+range. It is more well-tested <span class="hljs-keyword">in</span> the wild.
+
+Fixes <span class="hljs-comment">#2310</span>
+</code></pre>
+<h2 id="&#x6807;&#x9898;message-subject-&#x9996;&#x884C;">&#x6807;&#x9898;(Message subject) (&#x9996;&#x884C;)</h2>
+<p>&#x9996;&#x884C;&#x4E0D;&#x80FD;&#x5927;&#x4E8E;70&#x4E2A;&#x5B57;&#x7B26;, &#x7B2C;&#x4E8C;&#x884C;&#x603B;&#x662F;&#x7A7A;&#x767D;&#x7684;&#x5E76;&#x4E14;&#x5176;&#x4ED6;&#x884C;&#x5E94;&#x8BE5;&#x5728;80&#x4E2A;&#x5B57;&#x7B26;&#x4EE5;&#x5185;. <code>&lt;type&gt;</code> &#x548C; <code>&lt;scope&gt;</code> &#x59CB;&#x7EC8;&#x662F;&#x5C0F;&#x5199;.</p>
+<h3 id="type&#x53EF;&#x7528;&#x503C;"><code>&lt;type&gt;</code>&#x53EF;&#x7528;&#x503C;:</h3>
+<ul>
+<li><strong>feat</strong> (&#x7528;&#x4F8B;&#x7684;&#x65B0;&#x7279;&#x6027;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6784;&#x5EFA;&#x811A;&#x672C;&#x7684;&#x65B0;&#x7279;&#x6027;)</li>
+<li><strong>fix</strong> (&#x7528;&#x4F8B;&#x7684;Bug&#x4FEE;&#x590D;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6784;&#x5EFA;&#x811A;&#x672C;&#x7684;Bug&#x4FEE;&#x590D;)</li>
+<li><strong>docs</strong> (&#x5BF9;&#x6587;&#x6863;&#x7684;&#x66F4;&#x6539;)</li>
+<li><strong>style</strong> (&#x683C;&#x5F0F;&#x5316;&#xFF0C;&#x7F3A;&#x5C11;&#x5206;&#x53F7;&#xFF0C;&#x6CA1;&#x6709;&#x751F;&#x4EA7;&#x4EE3;&#x7801;&#x53D8;&#x66F4;&#x7B49;&#xFF1B;)</li>
+<li><strong>refactor</strong> (&#x91CD;&#x6784;&#x751F;&#x4EA7;&#x4EE3;&#x7801;&#xFF0C;&#x4F8B;&#x5982;&#x91CD;&#x547D;&#x540D;&#x53D8;&#x91CF;)</li>
+<li><strong>test</strong> (&#x6DFB;&#x52A0;&#x7F3A;&#x5931;&#x6D4B;&#x8BD5;&#x3001;&#x91CD;&#x6784;&#x6D4B;&#x8BD5;&#x3001;&#x65E0;&#x751F;&#x4EA7;&#x4EE3;&#x7801;&#x66F4;&#x6539;)</li>
+<li><strong>chore</strong> (&#x4FEE;&#x6539;&#x6784;&#x5EFA;&#x811A;&#x672C;&#xFF0C;&#x66F4;&#x65B0;Grunt&#x4EFB;&#x52A1;&#x7B49;&#xFF1B;&#x6CA1;&#x6709;&#x751F;&#x4EA7;&#x4EE3;&#x7801;&#x66F4;&#x6539;)</li>
+</ul>
+<h3 id="&#x793A;&#x4F8B;-scope-&#x503C;">&#x793A;&#x4F8B; <code>&lt;scope&gt;</code> &#x503C;:</h3>
+<ul>
+<li>init</li>
+<li>runner</li>
+<li>watcher</li>
+<li>config</li>
+<li>web-server</li>
+<li>proxy</li>
+<li>etc.</li>
+</ul>
+<p><code>&lt;scope&gt;</code> &#x53EF;&#x4EE5;&#x662F;&#x7A7A;&#x7684; (&#x4F8B;&#x5982;. &#x5982;&#x679C;&#x66F4;&#x6539;&#x662F;&#x5168;&#x5C40;&#x7684;&#xFF0C;&#x6216;&#x8005;&#x5F88;&#x96BE;&#x5206;&#x914D;&#x7ED9;&#x5355;&#x4E2A;&#x7EC4;&#x4EF6;), &#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x62EC;&#x53F7;. &#x5728;&#x5C0F;&#x7684;&#x9879;&#x76EE;&#x6216;&#x63D2;&#x4EF6;&#x4E2D; <code>&lt;scope&gt;</code> &#x662F;&#x7A7A;&#x7684;.</p>
+<h2 id="&#x5185;&#x5BB9;message-body">&#x5185;&#x5BB9;(Message body)</h2>
+<ul>
+<li>&#x4F7F;&#x7528;&#x7948;&#x4F7F;&#x53E5;,&#x73B0;&#x5728;&#x65F6;: &#x201C;change&#x201D; &#x4E0D;&#x662F; &#x201C;changed&#x201D; &#x4E5F;&#x4E0D;&#x662F; &#x201C;changes&#x201D;</li>
+<li>&#x5305;&#x62EC;&#x6539;&#x53D8;&#x7684;&#x52A8;&#x673A;&#x548C;&#x4E0E;&#x5148;&#x524D;&#x884C;&#x4E3A;&#x7684;&#x5BF9;&#x6BD4;&#x3002;</li>
+</ul>
+<p>For more info about message body, see:</p>
+<ul>
+<li><a href="http://365git.tumblr.com/post/3308646748/writing-git-commit-messages" target="_blank">http://365git.tumblr.com/post/3308646748/writing-git-commit-messages</a></li>
+<li><a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html" target="_blank">http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html</a></li>
+</ul>
+<h2 id="message-footer">Message footer</h2>
+<h3 id="referencing-issues">Referencing issues</h3>
+<p>Closed issues should be listed on a separate line in the footer prefixed with &quot;Closes&quot; keyword like this:</p>
+<pre><code class="lang-bash">Closes <span class="hljs-comment">#234</span>
+</code></pre>
+<p>or in the case of multiple issues:</p>
+<pre><code class="lang-bash">Closes <span class="hljs-comment">#123, #245, #992</span>
+</code></pre>
+<h3 id="breaking-changes">Breaking changes</h3>
+<p>All breaking changes have to be mentioned in footer with the
+description of the change, justification and migration notes.</p>
+<pre><code class="lang-bash">BREAKING CHANGE:
+
+`port-runner` <span class="hljs-built_in">command</span> line option has changed to `runner-port`, so that it is
+consistent with the configuration file syntax.
+
+To migrate your project, change all the commands, <span class="hljs-built_in">where</span> you use `--port-runner`
+to `--runner-port`.
+</code></pre>
+<hr>
+<p>This document is based on <a href="https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#" target="_blank">AngularJS Git Commit Msg Convention</a>. See the
+<a href="https://github.com/karma-runner/karma/commits/master" target="_blank">commit history</a> for examples of properly-formatted commit messages.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="semver.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 语义化版本">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"语义化提交","level":"1.7.5","depth":2,"previous":{"title":"语义化版本","level":"1.7.4","depth":2,"path":"attachments/semver.md","ref":"attachments/semver.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Git学习笔记","language":"zh-hans","gitbook":"*","description":"Git学习笔记"},"file":{"path":"attachments/semantic_commit.md","mtime":"2018-02-09T02:05:35.442Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-09T02:06:27.897Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
